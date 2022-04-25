@@ -4,6 +4,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 final FirebaseMessaging _fcm = FirebaseMessaging.instance;
 late FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin;
+get selectionNotification => null;
 
 initializeMessaging() async {
   await Firebase.initializeApp();
