@@ -3,7 +3,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 final FirebaseMessaging _fcm = FirebaseMessaging.instance;
-FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin;
+late FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin;
 
 initializeMessaging() async {
   await Firebase.initializeApp();
@@ -24,7 +24,7 @@ Future<dynamic> selectionNotification(String payload) async {
 
 handleMessage(RemoteMessage message) async {
   const AndroidNotificationDetails androidPlatformChannelSpecifics =
-      AndroidNotificationDetails('CHAT', "CHAT", 'CHAT', importance: Importance.max, priority: Priority.high, showWhen: true);
+      AndroidNotificationDetails('CHAT', "CHAT", importance: Importance.max, priority: Priority.high, showWhen: true);
   const NotificationDetails platformChannelSpecifics = NotificationDetails(android: androidPlatformChannelSpecifics);
   await _flutterLocalNotificationsPlugin.show(0, "New Messages", message.data['sender'] + ": " + message.data['message'], platformChannelSpecifics,
       payload: 'CHAT');
@@ -37,7 +37,7 @@ Future<String?> getFCMToken() async {
 Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await initializeMessaging();
   const AndroidNotificationDetails androidPlatformChannelSpecifics =
-      AndroidNotificationDetails('CHAT', "CHAT", 'CHAT', importance: Importance.max, priority: Priority.high, showWhen: true);
+      AndroidNotificationDetails('CHAT', "CHAT", importance: Importance.max, priority: Priority.high, showWhen: true);
   const NotificationDetails platformChannelSpecifics = NotificationDetails(android: androidPlatformChannelSpecifics);
   await _flutterLocalNotificationsPlugin.show(0, "New Messages", message.data['sender'] + ": " + message.data['message'], platformChannelSpecifics,
       payload: 'CHAT');
