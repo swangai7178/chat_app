@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -17,10 +19,6 @@ initializeMessaging() async {
     print("onMessage: $message");
     await handleMessage(message);
   });
-}
-
-Future<dynamic> selectionNotification(String payload) async {
-  print('payload: $payload');
 }
 
 handleMessage(RemoteMessage message) async {
